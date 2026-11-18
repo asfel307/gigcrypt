@@ -1,6 +1,6 @@
 # GigCrypt — Status Build (koordinator)
 
-Terakhir diperbarui: 2026-11-19 ~02:00 WIB.
+Terakhir diperbarui: 2026-11-19 ~01:47 WIB.
 Deadline submit: **4 Des 2026 14:00 PT = 5 Des 05:00 WIB** (target submit
 4 Des siang WIB). Pendaftaran SELESAI (Anugrah, 19 Nov ~01:21 WIB).
 Kiro user ID: tersimpan di MEMORY.md (jangan tulis di repo publik).
@@ -31,8 +31,8 @@ demo, submission Devpost.
     (digambar PIL, sudah dicek visual) + meta OG/Twitter di `index.html`.
 - **Siap deploy:** `LICENSE` (MIT) + `.github/workflows/deploy.yml`
   (build + publish ke Pages otomatis tiap push ke `main`).
-- **Dokumen:** `DEMO_SCRIPT.md` (naskah video < 3 menit),
-  `SUBMISSION_DRAFT.md` (draf cerita Devpost + daftar screenshot).
+- **Perbaikan form "Summon" meluber (19 Nov ~01:47 WIB):** di desktop 1920px, kolom tanggal + tombol Summon menggantung ~280px di luar tepi kanan kartu (grid `2fr 1.4fr 1fr 1fr 1.2fr auto` + lebar minimum input tanggal memaksa grid lebih lebar dari panel 960px). Perbaikan di `src/styles.css` saja: track jadi `minmax(0, …)` + `.form > * { min-width: 0; }` (kolom tanggal 1.4fr ≈ 157px di 890px lebar panel — cukup untuk segmen tanggal), dan breakpoint layout 2-kolom naik dari 760px ke **1024px** supaya tablet tidak lagi memakai satu baris yang sempit. Breakpoint mobile 480px (1 kolom) tidak berubah. `npm run build` hijau. Perlu verifikasi ulang di browser asli oleh Muse (tidak ada headless browser di VM ini).
+  - Catatan: uji logika `/tmp/gt/test.js` flaky pada 1 butir ("newest" — 3 gig dibuat dalam milidetik yang sama, `createdAt` seri; file tes sendiri mengakui "createdAt ms ties possible"). Tiga kali jalan: 30/30, 29/30, 30/30. Bukan akibat perbaikan CSS ini (tes tidak mengimpor CSS).
 
 ## Butuh Muse (browser — koordinator tidak bisa)
 1. **Repo GitHub publik `asfel307/gigcrypt`** — buat repo (GitHub App
