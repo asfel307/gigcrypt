@@ -69,9 +69,13 @@ body {
 
 .form {
   display: grid;
-  grid-template-columns: 2fr 1.4fr 1fr 1fr 1.2fr auto;
+  /* minmax(0, …): fr tracks may shrink below the inputs' intrinsic
+     min-content width — otherwise the date input forces the grid wider
+     than the panel and the last controls hang outside the card. */
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.4fr) auto;
   gap: 8px;
 }
+.form > * { min-width: 0; }
 input, select, button {
   font: inherit;
   color: var(--ink);
@@ -178,8 +182,13 @@ footer { text-align: center; color: var(--muted); font-size: 13px; }
   margin-left: auto;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 1024px) {
+  /* Single-row form needs ~850px of panel width (date input alone wants
+     ~140px); below that, wrap to two columns instead of overflowing. */
   .form { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 760px) {
   .hero h1 { font-size: 40px; }
   .board-tools .search { flex-basis: 100%; }
 }
